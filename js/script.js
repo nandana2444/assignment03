@@ -1,50 +1,52 @@
-// When the DOM content is loaded, execute the following code
 document.addEventListener('DOMContentLoaded', function() {
-    // Retrieve the element with the ID 'student-info' and store it in the variable 'studentInfo'
-    const studentInfo = document.getElementById('student-info');
-    studentInfo.textContent = 'Student ID: YOUR_ID - Your Name';
-
-    // Retrieve the form element with the ID 'pizza-order-form' and store it in the variable 'pizzaForm'
     const pizzaForm = document.getElementById('pizza-order-form');
-    // Retrieve the element with the ID 'order-summary' and store it in the variable 'orderSummary'
     const orderSummary = document.getElementById('order-summary');
 
-    // Add an event listener to the 'pizzaForm' for the form submission event
     pizzaForm.addEventListener('submit', function(event) {
-        // Prevent the default form submission behavior
         event.preventDefault();
 
-        // Get the value of the selected pizza size from the dropdown menu
         const size = document.getElementById('pizza-size').value;
 
-        // Initialize an empty array to store the selected toppings
         const toppings = [];
-        // Select all checkboxes with the name 'topping' that are checked, and iterate over them
         document.querySelectorAll('input[name="topping"]:checked').forEach(function(checkbox) {
-            // Push the value of each checked checkbox (topping) into the 'toppings' array
             toppings.push(checkbox.value);
         });
 
-        // Get the value of the special instructions entered by the user
+        // Check if user wants extra cheese
+        const extraCheese = document.getElementById('extra-cheese').checked;
+
+        // Check for additional toppings
+        const additionalToppings = [];
+        document.querySelectorAll('input[name="additional-topping"]:checked').forEach(function(checkbox) {
+            additionalToppings.push(checkbox.value);
+        });
+
+        // Combine the default and additional toppings
+        const allToppings = [...toppings, ...additionalToppings];
+
+        const crustType = document.getElementById('crust-type').value;
+        const sauce = document.getElementById('sauce').value;
         const instructions = document.getElementById('special-instructions').value;
 
-        // Create a new Pizza object with the selected size, toppings, and instructions
-        const pizza = new Pizza(size, toppings, instructions);
+        const pizza = new Pizza(size, allToppings, crustType, sauce, instructions, extraCheese);
 
-        // Display the order summary with pizza details dynamically on the page
         orderSummary.innerHTML = `<h2>Your Order Summary</h2>
                                  <p>Size: ${pizza.size}</p>
                                  <p>Toppings: ${pizza.toppings.join(', ')}</p>
-                                 <p>Special Instructions: ${pizza.instructions}</p>`;
+                                 <p>Crust Type: ${pizza.crustType}</p>
+                                 <p>Sauce: ${pizza.sauce}</p>
+                                 <p>Special Instructions: ${pizza.instructions}</p>
+                                 <p>Extra Cheese: ${pizza.extraCheese ? 'Yes' : 'No'}</p>`;
     });
 
-    // Define the Pizza class
     class Pizza {
-        // Constructor function to create a new Pizza object with size, toppings, and instructions
-        constructor(size, toppings, instructions) {
-            this.size = size; // Size of the pizza
-            this.toppings = toppings; // Array of selected toppings
-            this.instructions = instructions; // Special instructions for the pizza
+        constructor(size, toppings, crustType, sauce, instructions, extraCheese) {
+            this.size = size;
+            this.toppings = toppings;
+            this.crustType = crustType;
+            this.sauce = sauce;
+            this.instructions = instructions;
+            this.extraCheese = extraCheese;
         }
     }
 });
