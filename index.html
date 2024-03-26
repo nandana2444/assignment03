@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Pizza Shop</title>
     <link rel="stylesheet" href="../css/styles.css">
-
-
 </head>
 <body>
     <div class="container">
@@ -25,10 +23,42 @@
             <input type="checkbox" id="mushrooms" name="topping" value="Mushrooms">
             <label for="mushrooms">Mushrooms</label><br>
             <input type="checkbox" id="sausage" name="topping" value="Sausage">
-            <label for="sausage">Sausage</label><br><br>
+            <label for="sausage">Sausage</label><br>
+            <input type="checkbox" id="onions" name="topping" value="Onions">
+            <label for="onions">Onions</label><br>
+            <!-- Add more toppings as needed -->
 
-            <label for="instructions">Special Instructions:</label><br>
+            <br>
+
+            <label for="additional-toppings">Select Additional Toppings:</label><br>
+            <input type="checkbox" id="olives" name="additional-topping" value="Olives">
+            <label for="olives">Olives</label><br>
+            <input type="checkbox" id="bell-peppers" name="additional-topping" value="Bell Peppers">
+            <label for="bell-peppers">Bell Peppers</label><br>
+            <!-- Add more additional topping options as needed -->
+
+            <br>
+
+            <label for="crust-type">Select Crust Type:</label>
+            <select id="crust-type" name="crust-type">
+                <option value="thin">Thin Crust</option>
+                <option value="thick">Thick Crust</option>
+                <option value="stuffed">Stuffed Crust</option>
+            </select><br><br>
+
+            <label for="sauce">Select Sauce:</label>
+            <select id="sauce" name="sauce">
+                <option value="tomato">Tomato Sauce</option>
+                <option value="bbq">BBQ Sauce</option>
+                <option value="pesto">Pesto Sauce</option>
+                <!-- Add more sauce options as needed -->
+            </select><br><br>
+
+            <label for="special-instructions">Special Instructions:</label><br>
             <textarea id="special-instructions" name="special-instructions" rows="4" cols="50"></textarea><br><br>
+
+            <input type="checkbox" id="extra-cheese" name="extra-cheese" value="Extra Cheese">
+            <label for="extra-cheese">Extra Cheese</label><br><br>
 
             <button type="submit">Place Order</button>
         </form>
